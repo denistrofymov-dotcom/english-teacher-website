@@ -996,7 +996,11 @@
                 </div>
 
                 <!-- Contact Form -->
-                <form name="lesson-booking" method="POST" data-netlify="true" class="contact-form">
+                <form name="lesson-booking" method="POST" netlify netlify-honeypot="bot-field" action="/success" class="contact-form">
+    <input type="hidden" name="form-name" value="lesson-booking">
+    <p style="display:none;">
+        <label>Don't fill this out: <input name="bot-field" /></label>
+    </p>
                     <input type="hidden" name="form-name" value="lesson-booking">
                     
                     <div class="form-group">
