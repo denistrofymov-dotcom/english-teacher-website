@@ -1,1198 +1,986 @@
 <!DOCTYPE html>
-<html lang="ru" dir="ltr">
+<html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Преподаватель английского языка | English Teacher</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Преподаватель английского языка в Израиле</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <style>
+        :root {
+            --bg-primary: #26253b;
+            --bg-secondary: #191c2b;
+            --bg-elevated: #383a48;
+            --text-primary: #f7f7ff;
+            --text-secondary: rgba(255, 255, 255, 0.8);
+            --text-tertiary: rgba(255, 255, 255, 0.6);
+            --accent-blue: #09f;
+            --accent-green: #22c55e;
+            --accent-red: #ff3a27;
+            --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        :root {
-            --primary: #2563eb;
-            --primary-dark: #1e40af;
-            --secondary: #8b5cf6;
-            --accent: #f59e0b;
-            --text-dark: #1f2937;
-            --text-light: #6b7280;
-            --bg-light: #f9fafb;
-            --white: #ffffff;
-        }
-
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-family: var(--font-family);
+            font-size: 16px;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
             line-height: 1.6;
-            color: var(--text-dark);
             overflow-x: hidden;
         }
 
-        [dir="rtl"] {
-            direction: rtl;
+        /* Header */
+        header {
+            background-color: var(--bg-secondary);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        /* Language Switcher */
-        .lang-switcher {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
             display: flex;
-            gap: 8px;
-            background: var(--white);
-            padding: 8px;
-            border-radius: 50px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            justify-content: space-between;
+            align-items: center;
         }
 
-        [dir="rtl"] .lang-switcher {
-            right: auto;
-            left: 20px;
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .lang-switcher {
+            display: flex;
+            gap: 10px;
         }
 
         .lang-btn {
-            padding: 8px 16px;
-            border: none;
             background: transparent;
-            color: var(--text-light);
+            border: 1px solid var(--text-tertiary);
+            color: var(--text-secondary);
+            padding: 8px 16px;
+            border-radius: 8px;
             cursor: pointer;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.3s ease;
+            font-family: var(--font-family);
             font-size: 14px;
+            transition: all 0.3s ease;
         }
 
-        .lang-btn:hover {
-            background: var(--bg-light);
-        }
-
+        .lang-btn:hover,
         .lang-btn.active {
-            background: var(--primary);
-            color: var(--white);
+            background-color: var(--accent-blue);
+            border-color: var(--accent-blue);
+            color: var(--text-primary);
         }
 
         /* Hero Section */
         .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            position: relative;
-            overflow: hidden;
-            padding: 80px 20px 40px;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            width: 150%;
-            height: 150%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
-            background-size: 50px 50px;
-            animation: moveBackground 20s linear infinite;
-        }
-
-        @keyframes moveBackground {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, 50px); }
-        }
-
-        .hero-content {
             max-width: 1200px;
-            width: 100%;
+            margin: 0 auto;
+            padding: 100px 20px 80px;
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 60px;
             align-items: center;
-            position: relative;
-            z-index: 1;
         }
 
-        .hero-text h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            color: var(--white);
-            margin-bottom: 20px;
-            line-height: 1.2;
-            animation: fadeInUp 0.8s ease;
+        .hero-content {
+            text-align: left;
         }
 
-        .hero-text .subtitle {
-            font-size: 1.3rem;
-            color: rgba(255,255,255,0.9);
-            margin-bottom: 30px;
-            animation: fadeInUp 0.8s ease 0.2s both;
-        }
-
-        .hero-text .stats {
+        .hero-image-container {
             display: flex;
-            gap: 40px;
-            margin-top: 40px;
-            animation: fadeInUp 0.8s ease 0.4s both;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--white);
-            display: block;
-        }
-
-        .stat-label {
-            color: rgba(255,255,255,0.8);
-            font-size: 0.9rem;
-            margin-top: 5px;
+            justify-content: center;
+            align-items: center;
         }
 
         .hero-image {
-            position: relative;
-            animation: fadeInUp 0.8s ease 0.6s both;
-        }
-
-        .image-wrapper {
-            width: 400px;
-            height: 400px;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 8px solid rgba(255,255,255,0.2);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
-            margin: 0 auto;
-        }
-
-        .image-wrapper img {
             width: 100%;
-            height: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 20px;
+            border: 3px solid var(--accent-blue);
+            box-shadow: 0 20px 60px rgba(0, 153, 255, 0.2);
             object-fit: cover;
+            /*    aspect-ratio: 3/4; */
         }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        h1 {
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .subtitle {
+            font-size: 20px;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+        }
+
+        .hero-description {
+            font-size: 18px;
+            color: var(--text-tertiary);
+            margin-bottom: 40px;
         }
 
         .cta-button {
             display: inline-block;
-            padding: 16px 40px;
-            background: var(--white);
-            color: var(--primary);
+            background-color: var(--accent-blue);
+            color: var(--text-primary);
+            padding: 16px 32px;
+            border-radius: 12px;
             text-decoration: none;
-            border-radius: 50px;
-            font-weight: 700;
-            margin-top: 20px;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+            font-weight: 600;
+            font-size: 18px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 40px;
         }
 
         .cta-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 153, 255, 0.3);
         }
 
-        /* Section Styles */
+        .stats {
+            display: flex;
+            gap: 60px;
+            margin-top: 40px;
+        }
+
+        .stat-item {
+            text-align: left;
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--accent-blue);
+        }
+
+        .stat-label {
+            font-size: 16px;
+            color: var(--text-tertiary);
+            margin-top: 8px;
+        }
+
+        /* Section */
         section {
-            padding: 100px 20px;
             max-width: 1200px;
             margin: 0 auto;
+            padding: 80px 20px;
         }
 
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 800;
+        h2 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
             text-align: center;
             margin-bottom: 60px;
-            position: relative;
-            padding-bottom: 20px;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            border-radius: 2px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         /* About Section */
-        .about {
-            background: var(--bg-light);
-        }
-
         .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
+            background-color: var(--bg-elevated);
+            padding: 60px;
+            border-radius: 16px;
+            margin-bottom: 40px;
         }
 
-        .about-text {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: var(--text-light);
-        }
-
-        .about-text p {
+        .about-content p {
+            font-size: 18px;
+            color: var(--text-secondary);
             margin-bottom: 20px;
+            line-height: 1.8;
         }
 
         .credentials {
-            background: var(--white);
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
-        }
-
-        .credential-item {
-            padding: 20px 0;
-            border-bottom: 1px solid #e5e7eb;
-        }
-
-        .credential-item:last-child {
-            border-bottom: none;
-        }
-
-        .credential-item h3 {
-            color: var(--primary);
-            font-size: 1.1rem;
-            margin-bottom: 8px;
-        }
-
-        .credential-item p {
-            color: var(--text-light);
-            font-size: 0.95rem;
-        }
-
-        /* Services Section */
-        .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .credential-card {
+            background-color: var(--bg-secondary);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .credential-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .credential-icon {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .credential-card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+
+        .credential-card p {
+            font-size: 16px;
+            color: var(--text-tertiary);
+            line-height: 1.6;
+        }
+
+        /* Diploma Section */
+        .diploma-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 60px;
+            padding: 40px;
+            background-color: var(--bg-elevated);
+            border-radius: 16px;
+        }
+
+        .diploma-image {
+            max-width: 600px;
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .diploma-image:hover {
+            transform: scale(1.05);
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 30px;
         }
 
         .service-card {
-            background: var(--white);
+            background-color: var(--bg-elevated);
             padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
+            border-radius: 16px;
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.2);
-            border-color: var(--primary);
+            transform: translateY(-5px);
         }
 
         .service-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            font-size: 48px;
             margin-bottom: 20px;
-            font-size: 1.8rem;
         }
 
         .service-card h3 {
-            font-size: 1.4rem;
+            font-size: 24px;
             margin-bottom: 15px;
-            color: var(--text-dark);
+            color: var(--text-primary);
         }
 
         .service-card p {
-            color: var(--text-light);
+            font-size: 16px;
+            color: var(--text-secondary);
             line-height: 1.7;
         }
 
-        /* Problem-Solution Section */
-        .problem-solution {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: var(--white);
-        }
-
-        .problem-solution .section-title {
-            color: var(--white);
-        }
-
-        .problem-solution .section-title::after {
-            background: var(--white);
-        }
-
-        .ps-content {
+        /* Problems/Solutions Section */
+        .comparison-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 40px;
-            margin-top: 40px;
+            margin-top: 60px;
         }
 
-        .ps-card {
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            padding: 40px;
-            border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.2);
+        .comparison-box {
+            background-color: var(--bg-elevated);
+            padding: 50px;
+            border-radius: 16px;
         }
 
-        .ps-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
+        .comparison-box h3 {
+            font-size: 32px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
 
-        .ps-card ul {
+        .comparison-box ul {
             list-style: none;
         }
 
-        .ps-card li {
-            padding: 12px 0;
+        .comparison-box li {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
             padding-left: 30px;
             position: relative;
         }
 
-        .ps-card li::before {
-            content: '✓';
+        .comparison-box li:before {
+            content: "•";
             position: absolute;
             left: 0;
-            color: var(--accent);
-            font-weight: bold;
-            font-size: 1.2rem;
+            font-size: 24px;
+            color: var(--accent-blue);
+        }
+
+        .problems-box li:before {
+            color: var(--accent-red);
+        }
+
+        .solutions-box li:before {
+            color: var(--accent-green);
+        }
+
+        /* Reviews Section */
+        #reviews {
+            max-width: 1200px;
+            margin: 0 auto 80px;
+            padding: 40px 20px;
+            background-color: var(--bg-elevated);
+            border-radius: 16px;
+        }
+
+        #reviews h2 {
+            text-align: center;
+            font-size: 48px;
+            margin-bottom: 40px;
+            color: var(--text-primary);
+        }
+
+        .reviews-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .review-card {
+            background-color: var(--bg-secondary);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-style: italic;
+            color: var(--text-secondary);
+            transition: transform 0.3s ease;
+        }
+
+        .review-card:hover {
+            transform: translateY(-5px);
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+        }
+
+        .review-text {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .review-author {
+            font-weight: 600;
+            font-size: 16px;
+            color: var(--accent-blue);
+            text-align: right;
         }
 
         /* Contact Section */
-        .contact {
-            background: var(--bg-light);
-        }
-
-        .contact-content {
-            max-width: 800px;
-            margin: 0 auto;
+        .contact-section {
+            background-color: var(--bg-secondary);
+            padding: 100px 20px;
             text-align: center;
         }
 
-        .contact-info {
+        .contact-buttons {
             display: flex;
             justify-content: center;
-            gap: 60px;
+            gap: 20px;
             margin-top: 40px;
             flex-wrap: wrap;
         }
 
-        .contact-item {
-            text-align: center;
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background-color: var(--accent-green);
+            color: var(--text-primary);
+            padding: 16px 32px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-btn.telegram {
+            background-color: var(--accent-blue);
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
         .contact-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            font-size: 2rem;
-            color: var(--white);
-        }
-
-        .contact-item h3 {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-            color: var(--text-dark);
-        }
-
-        .contact-item a {
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
-
-        .contact-item a:hover {
-            text-decoration: underline;
-        }
-
-        .free-lesson {
-            background: var(--white);
-            padding: 40px;
-            border-radius: 20px;
-            margin-top: 60px;
-            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
-        }
-
-        .free-lesson h3 {
-            font-size: 1.8rem;
-            color: var(--primary);
-            margin-bottom: 20px;
-        }
-
-        .free-lesson p {
-            font-size: 1.1rem;
-            color: var(--text-light);
-            line-height: 1.8;
-            margin-bottom: 30px;
-        }
-
-        /* Contact Form Styles */
-        .contact-form {
-            max-width: 600px;
-            margin: 40px auto 0;
-            background: var(--white);
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
-        }
-
-        .form-group {
-            margin-bottom: 25px;
-        }
-
-        .form-group label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: var(--text-dark);
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px 16px;
-            border: 2px solid #e5e7eb;
-            border-radius: 10px;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-            font-family: inherit;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 16px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: var(--white);
-            border: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.4);
-        }
-
-        .form-success {
-            display: none;
-            padding: 20px;
-            background: #d1fae5;
-            color: #065f46;
-            border-radius: 10px;
-            margin-top: 20px;
-            text-align: center;
-            font-weight: 600;
+            font-size: 24px;
         }
 
         /* Footer */
         footer {
-            background: var(--text-dark);
-            color: var(--white);
-            text-align: center;
+            background-color: var(--bg-secondary);
             padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        footer p {
+            color: var(--text-tertiary);
+            font-size: 14px;
+        }
+
+        /* Placeholder for images */
+        .image-placeholder {
+            background: linear-gradient(135deg, var(--bg-elevated) 0%, var(--bg-secondary) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: var(--text-tertiary);
+            font-size: 14px;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .image-placeholder-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+            opacity: 0.5;
         }
 
         /* Responsive */
         @media (max-width: 968px) {
-            .hero-content {
+            .hero {
                 grid-template-columns: 1fr;
                 text-align: center;
-                padding: 0 20px;
             }
 
-            .hero-text h1 {
-                font-size: 2rem;
-                word-wrap: break-word;
-                overflow-wrap: break-word;
+            .hero-content {
+                text-align: center;
             }
 
-            .hero-text .subtitle {
-                font-size: 1rem;
-                word-wrap: break-word;
-                overflow-wrap: break-word;
-            }
-
-            .hero-text .stats {
+            .stats {
                 justify-content: center;
-                flex-wrap: wrap;
             }
 
-            .image-wrapper {
-                width: 300px;
-                height: 300px;
+            .stat-item {
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 40px;
             }
 
-            .about-content,
-            .ps-content {
-                grid-template-columns: 1fr;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .contact-info {
-                gap: 40px;
+            h2 {
+                font-size: 32px;
             }
 
             .hero {
-                padding: 80px 10px 40px;
+                padding: 60px 20px 40px;
+            }
+
+            .stats {
+                flex-direction: column;
+                gap: 40px;
+            }
+
+            .comparison-container {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-content {
+                padding: 30px;
+            }
+
+            .comparison-box {
+                padding: 30px;
             }
         }
 
-        /* Hidden language content */
-        .lang-content {
-            display: none;
+        /* Hebrew RTL Support */
+        [dir='rtl'] {
+            direction: rtl;
         }
 
-        .lang-content.active {
-            display: block;
+        [dir='rtl'] .comparison-box li {
+            padding-left: 0;
+            padding-right: 30px;
+        }
+
+        [dir='rtl'] .comparison-box li:before {
+            left: auto;
+            right: 0;
+        }
+
+        [dir='rtl'] .hero-content {
+            text-align: right;
+        }
+
+        [dir='rtl'] .stat-item {
+            text-align: right;
         }
     </style>
 </head>
 <body>
-    <!-- Language Switcher -->
-    <div class="lang-switcher">
-        <button class="lang-btn active" data-lang="ru">RU</button>
-        <button class="lang-btn" data-lang="he">עב</button>
-        <button class="lang-btn" data-lang="en">EN</button>
-    </div>
+    <header>
+        <nav>
+            <a href="#" class="logo" data-translate="site-name">English Teacher</a>
+            <div class="lang-switcher">
+                <button class="lang-btn active" onclick="changeLanguage('ru')">RU</button>
+                <button class="lang-btn" onclick="changeLanguage('he')">עב</button>
+                <button class="lang-btn" onclick="changeLanguage('en')">EN</button>
+            </div>
+        </nav>
+    </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <div class="hero-text">
-                <!-- Russian -->
-                <div class="lang-content active" data-lang-content="ru">
-                    <h1>Профессиональный преподаватель английского языка</h1>
-                    <p class="subtitle">Более 20 лет опыта. Подготовка к Багруту 3-5 ехидот. Лицензированный учитель в Израиле.</p>
-                    <a href="#contact" class="cta-button">Бесплатный пробный урок</a>
-                    <div class="stats">
-                        <div class="stat-item">
-                            <span class="stat-number">20+</span>
-                            <span class="stat-label">лет опыта</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number">100+</span>
-                            <span class="stat-label">учеников</span>
-                        </div>
+    <main>
+        <!-- Hero Section with Photo -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1 data-translate="hero-title">Преподаватель английского языка</h1>
+                <p class="subtitle" data-translate="hero-subtitle">Более 20 лет опыта. Подготовка к Багруту 3-5 ехидот</p>
+                <p class="hero-description" data-translate="hero-description">Лицензированный учитель в Израиле</p>
+                <a href="#contact" class="cta-button" data-translate="cta-trial">Бесплатный пробный урок</a>
+
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-number">20+</div>
+                        <div class="stat-label" data-translate="stat-experience">лет опыта</div>
                     </div>
-                </div>
-
-                <!-- Hebrew -->
-                <div class="lang-content" data-lang-content="he">
-                    <h1>מורה מקצועית לאנגלית</h1>
-                    <p class="subtitle">למעלה מ-20 שנות ניסיון. הכנה לבגרות 3-5 יחידות. מורה מורשית בישראל.</p>
-                    <a href="#contact" class="cta-button">שיעור ניסיון חינם</a>
-                    <div class="stats">
-                        <div class="stat-item">
-                            <span class="stat-number">20+</span>
-                            <span class="stat-label">שנות ניסיון</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number">100+</span>
-                            <span class="stat-label">תלמידים</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- English -->
-                <div class="lang-content" data-lang-content="en">
-                    <h1>Professional English Teacher</h1>
-                    <p class="subtitle">20+ years of experience. Bagrut preparation 3-5 units. Licensed teacher in Israel.</p>
-                    <a href="#contact" class="cta-button">Free Trial Lesson</a>
-                    <div class="stats">
-                        <div class="stat-item">
-                            <span class="stat-number">20+</span>
-                            <span class="stat-label">years experience</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number">100+</span>
-                            <span class="stat-label">students</span>
-                        </div>
+                    <div class="stat-item">
+                        <div class="stat-number">100+</div>
+                        <div class="stat-label" data-translate="stat-students">учеников</div>
                     </div>
                 </div>
             </div>
 
-            <div class="hero-image">
-                <div class="image-wrapper">
-                    <img src="photo.jpg" alt="Teacher">
+            <!-- Teacher Photo -->
+            <div class="hero-image-container">
+                <!-- ЗАМЕНИТЕ src="teacher-photo.jpg" на путь к вашей фотографии -->
+                <img src="teacher-photo.jpeg" alt="Преподаватель английского языка" class="hero-image image-placeholder" />
+                <!-- Если фото еще нет, раскомментируйте этот блок:
+                <div class="hero-image image-placeholder">
+                    <div class="image-placeholder-icon">👤</div>
+                    <p>Фото преподавателя<br>Замените src="teacher-photo.jpg"</p>
                 </div>
+                -->
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- About Section -->
-    <section class="about" id="about">
-        <!-- Russian -->
-        <div class="lang-content active" data-lang-content="ru">
-            <h2 class="section-title">Обо мне</h2>
+        <!-- About Section -->
+        <section id="about">
+            <h2 data-translate="about-title">Обо мне</h2>
             <div class="about-content">
-                <div class="about-text">
-                    <p>Я окончила ХГУ им. Каразина (английский язык и литература) и получила магистерскую степень. В начале 2000-х училась и преподавала в Лондоне в Birkbeck, University of London.</p>
-                    <p>В 2010 году репатриировалась в Израиль, а в 2012 успешно окончила курс для преподавателей в Haifa Teacher's Training College. Получила теудат ораа и ришайон ораа.</p>
-                    <p>Преподаю в старшей школе с 2012 года, специализируюсь на подготовке к Багруту 3-5 ехидот. Создаю англоязычную среду, используя актуальные ресурсы: YouTube, СМИ, видео блогеров, Quizlet и динамичные презентации.</p>
-                    <p>Моя цель — сделать обучение захватывающим, живым и интерактивным!</p>
+                <p data-translate="about-p1">Я окончила ХГУ им. Каразина (английский язык и литература) и получила магистерскую степень. В начале 2000-х училась и преподавала в Лондоне в Birkbeck, University of London.</p>
+                <p data-translate="about-p2">В 2010 году репатриировалась в Израиль, а в 2012 успешно окончила курс для преподавателей в Haifa Teacher's Training College. Получила теудат ораа и ришайон ораа.</p>
+                <p data-translate="about-p3">Преподаю в старшей школе с 2012 года, специализируюсь на подготовке к Багруту 3-5 ехидот. Создаю англоязычную среду, используя актуальные ресурсы: YouTube, СМИ, видео блогеров, Quizlet и динамичные презентации.</p>
+                <p data-translate="about-goal"><strong>Моя цель — сделать обучение захватывающим, живым и интерактивным!</strong></p>
+            </div>
+
+            <div class="credentials">
+                <div class="credential-card">
+                    <div class="credential-icon">🎓</div>
+                    <h3 data-translate="cred-education">Образование</h3>
+                    <p data-translate="cred-education-text">Магистр английского языка и литературы (ХГУ им. Каразина)<br />Birkbeck, University of London</p>
                 </div>
-                <div class="credentials">
-                    <div class="credential-item">
-                        <h3>🎓 Образование</h3>
-                        <p>Магистр английского языка и литературы (ХГУ им. Каразина)</p>
-                        <p>Birkbeck, University of London</p>
-                    </div>
-                    <div class="credential-item">
-                        <h3>📜 Лицензии</h3>
-                        <p>Диплом учителя (теудат ораа)</p>
-                        <p>Лицензия учителя (ришайон ораа)</p>
-                        <p>Haifa Teacher's Training College</p>
-                    </div>
-                    <div class="credential-item">
-                        <h3>💼 Опыт</h3>
-                        <p>20+ лет преподавания</p>
-                        <p>С 2012 года в израильской старшей школе</p>
-                        <p>Многочисленные курсы повышения квалификации</p>
-                    </div>
+                <div class="credential-card">
+                    <div class="credential-icon">📜</div>
+                    <h3 data-translate="cred-licenses">Лицензии</h3>
+                    <p data-translate="cred-licenses-text">Диплом учителя (теудат ораа)<br />Лицензия учителя (ришайон ораа)<br />Haifa Teacher's Training College</p>
+                </div>
+                <div class="credential-card">
+                    <div class="credential-icon">💼</div>
+                    <h3 data-translate="cred-experience">Опыт</h3>
+                    <p data-translate="cred-experience-text">20+ лет преподавания<br />С 2012 года в израильской старшей школе<br />Многочисленные курсы повышения квалификации</p>
                 </div>
             </div>
-        </div>
 
-        <!-- Hebrew -->
-        <div class="lang-content" data-lang-content="he">
-            <h2 class="section-title">אודותיי</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>סיימתי תואר ראשון ושני באנגלית וספרות באוניברסיטת קרזין. בתחילת שנות ה-2000 למדתי והורתי בלונדון ב-Birkbeck, University of London.</p>
-                    <p>ב-2010 עליתי לישראל, וב-2012 סיימתי בהצלחה קורס להכשרת מורים במכללת אורנים. קיבלתי תעודת הוראה ורישיון הוראה.</p>
-                    <p>מלמדת בבית ספר תיכון מאז 2012, מתמחה בהכנה לבגרות 3-5 יחידות. יוצרת סביבה דוברת אנגלית באמצעות משאבים עדכניים: YouTube, תקשורת, סרטונים של בלוגרים, Quizlet ומצגות דינמיות.</p>
-                    <p>המטרה שלי - להפוך את הלמידה למרתקת, חיה ואינטראקטיבית!</p>
+            <!-- Diploma Photo Section -->
+            <div class="diploma-section">
+                <!-- ЗАМЕНИТЕ src="diploma.jpg" на путь к фото диплома -->
+                <img
+                    src="a/9.jpg"
+                    alt="Диплом преподавателя"
+                    class="diploma-image image-placeholder"
+                    onclick="this.requestFullscreen()"
+                />
+                <!-- Если фото диплома еще нет, раскомментируйте этот блок:
+                <div class="diploma-image image-placeholder">
+                    <div class="image-placeholder-icon">🎓</div>
+                    <p>Фото диплома<br>Замените src="diploma.jpg"<br>(Нажмите для полноэкранного просмотра)</p>
                 </div>
-                <div class="credentials">
-                    <div class="credential-item">
-                        <h3>🎓 השכלה</h3>
-                        <p>תואר שני באנגלית וספרות</p>
-                        <p>Birkbeck, University of London</p>
-                    </div>
-                    <div class="credential-item">
-                        <h3>📜 רישיונות</h3>
-                        <p>תעודת הוראה</p>
-                        <p>רישיון הוראה</p>
-                        <p>מכללת אורנים</p>
-                    </div>
-                    <div class="credential-item">
-                        <h3>💼 ניסיון</h3>
-                        <p>למעלה מ-20 שנות הוראה</p>
-                        <p>מאז 2012 בבית ספר תיכון ישראלי</p>
-                        <p>קורסי השתלמות רבים</p>
-                    </div>
-                </div>
+                -->
             </div>
-        </div>
+        </section>
 
-        <!-- English -->
-        <div class="lang-content" data-lang-content="en">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>I graduated from Karazin Kharkiv National University with a Master's degree in English and Literature. In the early 2000s, I studied and taught in London at Birkbeck, University of London.</p>
-                    <p>In 2010, I made aliyah to Israel, and in 2012 successfully completed teacher training at Haifa Teacher's Training College, receiving my teaching license.</p>
-                    <p>I've been teaching in high school since 2012, specializing in Bagrut preparation for 3-5 units. I create an English-speaking environment using current resources: YouTube, media, blogger videos, Quizlet, and dynamic presentations.</p>
-                    <p>My goal is to make learning exciting, vibrant, and interactive!</p>
-                </div>
-                <div class="credentials">
-                    <div class="credential-item">
-                        <h3>🎓 Education</h3>
-                        <p>Master's degree in English and Literature</p>
-                        <p>Birkbeck, University of London</p>
-                    </div>
-                    <div class="credential-item">
-                        <h3>📜 Licenses</h3>
-                        <p>Teaching Certificate (Te'udat Hora'a)</p>
-                        <p>Teaching License (Rishayon Hora'a)</p>
-                        <p>Haifa Teacher's Training College</p>
-                    </div>
-                    <div class="credential-item">
-                        <h3>💼 Experience</h3>
-                        <p>20+ years of teaching</p>
-                        <p>Since 2012 in Israeli high school</p>
-                        <p>Numerous professional development courses</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section class="services" id="services">
-        <!-- Russian -->
-        <div class="lang-content active" data-lang-content="ru">
-            <h2 class="section-title">Мои услуги</h2>
+        <!-- Services Section -->
+        <section id="services">
+            <h2 data-translate="services-title">Мои услуги</h2>
             <div class="services-grid">
                 <div class="service-card">
                     <div class="service-icon">📚</div>
-                    <h3>Подготовка к Багруту</h3>
-                    <p>Целенаправленная подготовка к экзаменам на 3-5 ехидот. Знаю все требования программы и формат экзамена.</p>
+                    <h3 data-translate="service1-title">Подготовка к Багруту</h3>
+                    <p data-translate="service1-text">Целенаправленная подготовка к экзаменам на 3-5 ехидот. Знаю все требования программы и формат экзамена.</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">🎯</div>
-                    <h3>Индивидуальный подход</h3>
-                    <p>Учитываю особенности восприятия и интересы каждого ученика. Темп обучения комфортный для ребёнка.</p>
+                    <h3 data-translate="service2-title">Индивидуальный подход</h3>
+                    <p data-translate="service2-text">Учитываю особенности восприятия и интересы каждого ученика. Темп обучения комфортный для ребёнка.</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">💡</div>
-                    <h3>Современные методики</h3>
-                    <p>YouTube, блогеры, Quizlet, интерактивные презентации — делаю обучение живым и увлекательным.</p>
+                    <h3 data-translate="service3-title">Современные методики</h3>
+                    <p data-translate="service3-text">YouTube, блогеры, Quizlet, интерактивные презентации — делаю обучение живым и увлекательным.</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">🌟</div>
-                    <h3>Повышение уверенности</h3>
-                    <p>Помогаю ребёнку поверить в свои силы, раскрыть потенциал и полюбить английский язык.</p>
+                    <h3 data-translate="service4-title">Повышение уверенности</h3>
+                    <p data-translate="service4-text">Помогаю ребёнку поверить в свои силы, раскрыть потенциал и полюбить английский язык.</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">🔍</div>
-                    <h3>Быстрая диагностика</h3>
-                    <p>Быстро определяю проблемные зоны и создаю эффективный план их устранения.</p>
+                    <h3 data-translate="service5-title">Быстрая диагностика</h3>
+                    <p data-translate="service5-text">Быстро определяю проблемные зоны и создаю эффективный план их устранения.</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">📈</div>
-                    <h3>Проверенные результаты</h3>
-                    <p>20+ лет опыта и сотни успешных учеников. Гарантирую качество обучения.</p>
+                    <h3 data-translate="service6-title">Проверенные результаты</h3>
+                    <p data-translate="service6-text">20+ лет опыта и сотни успешных учеников. Гарантирую качество обучения.</p>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <!-- Hebrew -->
-        <div class="lang-content" data-lang-content="he">
-            <h2 class="section-title">השירותים שלי</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">📚</div>
-                    <h3>הכנה לבגרות</h3>
-                    <p>הכנה ממוקדת לבחינות 3-5 יחידות. מכירה את כל דרישות התוכנית ופורמט המבחן.</p>
+        <!-- Problems vs Solutions -->
+        <section id="problems-solutions">
+            <h2 data-translate="familiar-title">Знакомая ситуация?</h2>
+            <div class="comparison-container">
+                <div class="comparison-box problems-box">
+                    <h3>
+                        <span>😟</span> <span data-translate="problems-heading">Проблемы</span>
+                    </h3>
+                    <ul>
+                        <li data-translate="problem1">Много домашних заданий</li>
+                        <li data-translate="problem2">Отсутствие качественного объяснения</li>
+                        <li data-translate="problem3">Нет контакта с преподавателем</li>
+                        <li data-translate="problem4">Проблемы наваливаются как снежный ком</li>
+                        <li data-translate="problem5">Ребёнок теряет веру в свои силы</li>
+                        <li data-translate="problem6">Теряется драгоценное время</li>
+                    </ul>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">🎯</div>
-                    <h3>גישה אישית</h3>
-                    <p>לוקחת בחשבון את מאפייני הקליטה והתחומי עניין של כל תלמיד. קצב למידה נוח.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">💡</div>
-                    <h3>שיטות מודרניות</h3>
-                    <p>YouTube, בלוגרים, Quizlet, מצגות אינטראקטיביות - הופכת את הלמידה לחיה ומרתקת.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🌟</div>
-                    <h3>חיזוק ביטחון</h3>
-                    <p>עוזרת לתלמיד להאמין ביכולות שלו, לחשוף פוטנציאל ולאהוב אנגלית.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🔍</div>
-                    <h3>אבחון מהיר</h3>
-                    <p>מזהה במהירות אזורי בעיה ויוצרת תוכנית יעילה לפתרון.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">📈</div>
-                    <h3>תוצאות מוכחות</h3>
-                    <p>למעלה מ-20 שנות ניסיון ומאות תלמידים מצליחים. מבטיחה איכות הוראה.</p>
+                <div class="comparison-box solutions-box">
+                    <h3>
+                        <span>✨</span> <span data-translate="solutions-heading">Решение</span>
+                    </h3>
+                    <ul>
+                        <li data-translate="solution1">Индивидуальный темп обучения</li>
+                        <li data-translate="solution2">Чуткий и внимательный инструктор</li>
+                        <li data-translate="solution3">Знание специфики школьной программы</li>
+                        <li data-translate="solution4">Опыт работы в школе с 2012 года</li>
+                        <li data-translate="solution5">Быстрое определение проблемы</li>
+                        <li data-translate="solution6">Возвращение веры в себя</li>
+                        <li data-translate="solution7">Раскрытие потенциала ребёнка</li>
+                    </ul>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <!-- English -->
-        <div class="lang-content" data-lang-content="en">
-            <h2 class="section-title">My Services</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">📚</div>
-                    <h3>Bagrut Preparation</h3>
-                    <p>Focused preparation for 3-5 unit exams. I know all program requirements and exam format.</p>
+        <!-- Reviews Section -->
+        <section id="reviews">
+            <h2 data-translate="reviews-title">Отзывы учеников</h2>
+            <div class="reviews-container">
+                <div class="review-card">
+                    <p class="review-text">"Прекрасный преподаватель! Мои знания английского значительно улучшились."</p>
+                    <p class="review-author">— Анна</p>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">🎯</div>
-                    <h3>Individual Approach</h3>
-                    <p>I consider each student's learning style and interests. Comfortable learning pace for the child.</p>
+                <div class="review-card">
+                    <p class="review-text">"Уроки интересные, всегда полезно и понятно."</p>
+                    <p class="review-author">— Михаил</p>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">💡</div>
-                    <h3>Modern Methods</h3>
-                    <p>YouTube, bloggers, Quizlet, interactive presentations - making learning vibrant and engaging.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🌟</div>
-                    <h3>Building Confidence</h3>
-                    <p>I help students believe in themselves, unlock potential and develop love for English.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🔍</div>
-                    <h3>Quick Diagnosis</h3>
-                    <p>Rapidly identify problem areas and create an effective plan to address them.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">📈</div>
-                    <h3>Proven Results</h3>
-                    <p>20+ years of experience and hundreds of successful students. Quality guaranteed.</p>
+                <div class="review-card">
+                    <p class="review-text">"Рекомендую всем, кто хочет успешно подготовиться к Багруту."</p>
+                    <p class="review-author">— Светлана</p>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Problem-Solution Section -->
-    <section class="problem-solution">
-        <!-- Russian -->
-        <div class="lang-content active" data-lang-content="ru">
-            <h2 class="section-title">Знакомая ситуация?</h2>
-            <div class="ps-content">
-                <div class="ps-card">
-                    <h3>😟 Проблемы</h3>
-                    <ul>
-                        <li>Много домашних заданий</li>
-                        <li>Отсутствие качественного объяснения</li>
-                        <li>Нет контакта с преподавателем</li>
-                        <li>Проблемы наваливаются как снежный ком</li>
-                        <li>Ребёнок теряет веру в свои силы</li>
-                        <li>Теряется драгоценное время</li>
-                    </ul>
-                </div>
-                <div class="ps-card">
-                    <h3>✨ Решение</h3>
-                    <ul>
-                        <li>Индивидуальный темп обучения</li>
-                        <li>Чуткий и внимательный инструктор</li>
-                        <li>Знание специфики школьной программы</li>
-                        <li>Опыт работы в школе с 2012 года</li>
-                        <li>Быстрое определение проблемы</li>
-                        <li>Возвращение веры в себя</li>
-                        <li>Раскрытие потенциала ребёнка</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <!-- Hebrew -->
-        <div class="lang-content" data-lang-content="he">
-            <h2 class="section-title">מצב מוכר?</h2>
-            <div class="ps-content">
-                <div class="ps-card">
-                    <h3>😟 בעיות</h3>
-                    <ul>
-                        <li>הרבה שיעורי בית</li>
-                        <li>חוסר הסבר איכותי</li>
-                        <li>אין קשר עם המורה</li>
-                        <li>בעיות מצטברות כפתית שלג</li>
-                        <li>הילד מאבד אמון ביכולות</li>
-                        <li>מאבדים זמן יקר</li>
-                    </ul>
-                </div>
-                <div class="ps-card">
-                    <h3>✨ פתרון</h3>
-                    <ul>
-                        <li>קצב למידה אישי</li>
-                        <li>מדריכה קשובה ותשומת לב</li>
-                        <li>היכרות עם תוכנית הלימודים</li>
-                        <li>ניסיון בבית ספר מאז 2012</li>
-                        <li>זיהוי מהיר של הבעיה</li>
-                        <li>החזרת אמון עצמי</li>
-                        <li>חשיפת פוטנציאל הילד</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <!-- English -->
-        <div class="lang-content" data-lang-content="en">
-            <h2 class="section-title">Does This Sound Familiar?</h2>
-            <div class="ps-content">
-                <div class="ps-card">
-                    <h3>😟 Problems</h3>
-                    <ul>
-                        <li>Too much homework</li>
-                        <li>Lack of quality explanation</li>
-                        <li>No connection with the teacher</li>
-                        <li>Problems snowballing</li>
-                        <li>Child losing self-confidence</li>
-                        <li>Wasting precious time</li>
-                    </ul>
-                </div>
-                <div class="ps-card">
-                    <h3>✨ Solution</h3>
-                    <ul>
-                        <li>Individual learning pace</li>
-                        <li>Attentive and caring instructor</li>
-                        <li>Knowledge of school curriculum</li>
-                        <li>School experience since 2012</li>
-                        <li>Quick problem identification</li>
-                        <li>Restoring self-confidence</li>
-                        <li>Unlocking child's potential</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <!-- Russian -->
-        <div class="lang-content active" data-lang-content="ru">
-            <h2 class="section-title">Свяжитесь со мной</h2>
-            <div class="contact-content">
-                <p style="font-size: 1.2rem; color: var(--text-light); margin-bottom: 40px;">
-                    Свяжитесь со мной, и мы обсудим, как я могу помочь вашему ребёнку достичь успеха в английском языке!
-                </p>
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <div class="contact-icon">📱</div>
-                        <h3>Телефон</h3>
-                        <a href="tel:+972525409321">052-54-09-321</a>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">✉️</div>
-                        <h3>Email</h3>
-                        <a href="mailto:jeniat340@gmail.com">jeniat340@gmail.com</a>
-                    </div>
-                </div>
-                <div class="free-lesson">
-                    <h3>🎁 Бесплатный пробный урок</h3>
-                    <p>
-                        Я предлагаю бесплатный ознакомительный урок, чтобы вы могли убедиться в эффективности моего метода обучения. 
-                        На первом уроке мы познакомимся, определим уровень и цели, и вы увидите, как проходят мои занятия.
-                    </p>
-                </div>
-
-                <!-- Contact Form -->
-                <form name="lesson-booking" method="POST" netlify netlify-honeypot="bot-field" action="/success" class="contact-form">
-    <input type="hidden" name="form-name" value="lesson-booking">
-    <p style="display:none;">
-        <label>Don't fill this out: <input name="bot-field" /></label>
-    </p>
-                    <input type="hidden" name="form-name" value="lesson-booking">
-                    
-                    <div class="form-group">
-                        <label for="name">Ваше имя *</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="phone">Телефон *</label>
-                        <input type="tel" id="phone" name="phone" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="message">Сообщение (возраст ребенка, уровень английского)</label>
-                        <textarea id="message" name="message"></textarea>
-                    </div>
-
-                    <button type="submit" class="submit-btn">Записаться на бесплатный урок</button>
-                </form>
-            </div>
-        </div>
-
-        <!-- Hebrew -->
-        <div class="lang-content" data-lang-content="he">
-            <h2 class="section-title">צרו קשר</h2>
-            <div class="contact-content">
-                <p style="font-size: 1.2rem; color: var(--text-light); margin-bottom: 40px;">
-                    צרו איתי קשר ונדון כיצד אוכל לעזור לילד שלכם להצליח באנגלית!
-                </p>
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <div class="contact-icon">📱</div>
-                        <h3>טלפון</h3>
-                        <a href="tel:+972525409321">052-54-09-321</a>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">✉️</div>
-                        <h3>אימייל</h3>
-                        <a href="mailto:jeniat340@gmail.com">jeniat340@gmail.com</a>
-                    </div>
-                </div>
-                <div class="free-lesson">
-                    <h3>🎁 שיעור ניסיון חינם</h3>
-                    <p>
-                        אני מציעה שיעור היכרות חינם כדי שתוכלו לראות את יעילות שיטת ההוראה שלי.
-                        בשיעור הראשון נכיר, נקבע רמה ומטרות, ותראו איך השיעורים שלי מתנהלים.
-                    </p>
-                </div>
-
-                <!-- Contact Form -->
-                <form name="lesson-booking-he" method="POST" data-netlify="true" class="contact-form">
-                    <input type="hidden" name="form-name" value="lesson-booking-he">
-                    
-                    <div class="form-group">
-                        <label for="name-he">השם שלך *</label>
-                        <input type="text" id="name-he" name="name" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="phone-he">טלפון *</label>
-                        <input type="tel" id="phone-he" name="phone" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email-he">אימייל</label>
-                        <input type="email" id="email-he" name="email">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="message-he">הודעה (גיל הילד, רמת אנגלית)</label>
-                        <textarea id="message-he" name="message"></textarea>
-                    </div>
-
-                    <button type="submit" class="submit-btn">הרשמה לשיעור חינם</button>
-                </form>
-            </div>
-        </div>
-
-        <!-- English -->
-        <div class="lang-content" data-lang-content="en">
-            <h2 class="section-title">Contact Me</h2>
-            <div class="contact-content">
-                <p style="font-size: 1.2rem; color: var(--text-light); margin-bottom: 40px;">
-                    Get in touch, and let's discuss how I can help your child succeed in English!
-                </p>
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <div class="contact-icon">📱</div>
-                        <h3>Phone</h3>
-                        <a href="tel:+972525409321">052-54-09-321</a>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">✉️</div>
-                        <h3>Email</h3>
-                        <a href="mailto:jeniat340@gmail.com">jeniat340@gmail.com</a>
-                    </div>
-                </div>
-                <div class="free-lesson">
-                    <h3>🎁 Free Trial Lesson</h3>
-                    <p>
-                        I offer a free introductory lesson so you can see the effectiveness of my teaching method.
-                        In the first lesson, we'll meet, determine the level and goals, and you'll see how my classes work.
-                    </p>
-                </div>
-
-                <!-- Contact Form -->
-                <form name="lesson-booking-en" method="POST" data-netlify="true" class="contact-form">
-                    <input type="hidden" name="form-name" value="lesson-booking-en">
-                    
-                    <div class="form-group">
-                        <label for="name-en">Your Name *</label>
-                        <input type="text" id="name-en" name="name" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="phone-en">Phone *</label>
-                        <input type="tel" id="phone-en" name="phone" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email-en">Email</label>
-                        <input type="email" id="email-en" name="email">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="message-en">Message (child's age, English level)</label>
-                        <textarea id="message-en" name="message"></textarea>
-                    </div>
-
-                    <button type="submit" class="submit-btn">Book Free Lesson</button>
-                </form>
-            </div>
+    <section id="contact" class="contact-section">
+        <h2 data-translate="contact-title">Свяжитесь со мной</h2>
+        <p class="section-subtitle" data-translate="contact-subtitle">
+            Свяжитесь со мной, и мы обсудим, как я могу помочь вашему ребёнку достичь успеха в английском языке!
+        </p>
+        <div class="contact-buttons">
+            <a
+                href="https://wa.me/972501234567?text=Здравствуйте!%20Хочу%20записаться%20на%20урок"
+                class="contact-btn whatsapp"
+                target="_blank"
+            >
+                <i class="fa-brands fa-whatsapp"></i>
+                <span data-translate="contact-whatsapp">WhatsApp</span>
+            </a>
+            <a
+                href="https://t.me/jenie_trofymov?text=Здравствуйте!%20Хочу%20записаться%20на%20урок"
+                class="contact-btn telegram"
+                target="_blank"
+            >
+                <i class="fa-brands fa-telegram"></i>
+                <span data-translate="contact-telegram">Telegram</span>
+            </a>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
-        <div class="lang-content active" data-lang-content="ru">
-            <p>&copy; 2025 Профессиональный преподаватель английского языка. Все права защищены.</p>
-        </div>
-        <div class="lang-content" data-lang-content="he">
-            <p>&copy; 2025 מורה מקצועית לאנגלית. כל הזכויות שמורות.</p>
-        </div>
-        <div class="lang-content" data-lang-content="en">
-            <p>&copy; 2025 Professional English Teacher. All rights reserved.</p>
-        </div>
+        <p data-translate="footer-text">© 2025 Преподаватель английского языка. Все права защищены.</p>
     </footer>
 
     <script>
-        // Language Switcher
-        const langButtons = document.querySelectorAll('.lang-btn');
-        const langContents = document.querySelectorAll('.lang-content');
-        const html = document.documentElement;
+        const translations = {
+            ru: {
+                'site-name': 'English Teacher',
+                'hero-title': 'Преподаватель английского языка',
+                'hero-subtitle': 'Более 20 лет опыта. Подготовка к Багруту 3-5 ехидот',
+                'hero-description': 'Лицензированный учитель в Израиле',
+                'cta-trial': 'Бесплатный пробный урок',
+                'stat-experience': 'лет опыта',
+                'stat-students': 'учеников',
+                'about-title': 'Обо мне',
+                'about-p1':
+                    'Я окончила ХГУ им. Каразина (английский язык и литература) и получила магистерскую степень. В начале 2000-х училась и преподавала в Лондоне в Birkbeck, University of London.',
+                'about-p2': 'В 2010 году репатриировалась в Израиль, а в 2012 успешно окончила курс для преподавателей в Haifa Teacher\'s Training College. Получила теудат ораа и ришайон ораа.',
+                'about-p3': 'Преподаю в старшей школе с 2012 года, специализируюсь на подготовке к Багруту 3-5 ехидот. Создаю англоязычную среду, используя актуальные ресурсы: YouTube, СМИ, видео блогеров, Quizlet и динамичные презентации.',
+                'about-goal': 'Моя цель — сделать обучение захватывающим, живым и интерактивным!',
+                'cred-education': 'Образование',
+                'cred-education-text': 'Магистр английского языка и литературы (ХГУ им. Каразина)<br>Birkbeck, University of London',
+                'cred-licenses': 'Лицензии',
+                'cred-licenses-text': 'Диплом учителя (теудат ораа)<br>Лицензия учителя (ришайон ораа)<br>Haifa Teacher\'s Training College',
+                'cred-experience': 'Опыт',
+                'cred-experience-text': '20+ лет преподавания<br>С 2012 года в израильской старшей школе<br>Многочисленные курсы повышения квалификации',
+                'services-title': 'Мои услуги',
+                'service1-title': 'Подготовка к Багруту',
+                'service1-text': 'Целенаправленная подготовка к экзаменам на 3-5 ехидот. Знаю все требования программы и формат экзамена.',
+                'service2-title': 'Индивидуальный подход',
+                'service2-text': 'Учитываю особенности восприятия и интересы каждого ученика. Темп обучения комфортный для ребёнка.',
+                'service3-title': 'Современные методики',
+                'service3-text': 'YouTube, блогеры, Quizlet, интерактивные презентации — делаю обучение живым и увлекательным.',
+                'service4-title': 'Повышение уверенности',
+                'service4-text': 'Помогаю ребёнку поверить в свои силы, раскрыть потенциал и полюбить английский язык.',
+                'service5-title': 'Быстрая диагностика',
+                'service5-text': 'Быстро определяю проблемные зоны и создаю эффективный план их устранения.',
+                'service6-title': 'Проверенные результаты',
+                'service6-text': '20+ лет опыта и сотни успешных учеников. Гарантирую качество обучения.',
+                'familiar-title': 'Знакомая ситуация?',
+                'problems-heading': 'Проблемы',
+                'problem1': 'Много домашних заданий',
+                'problem2': 'Отсутствие качественного объяснения',
+                'problem3': 'Нет контакта с преподавателем',
+                'problem4': 'Проблемы наваливаются как снежный ком',
+                'problem5': 'Ребёнок теряет веру в свои силы',
+                'problem6': 'Теряется драгоценное время',
+                'solutions-heading': 'Решение',
+                'solution1': 'Индивидуальный темп обучения',
+                'solution2': 'Чуткий и внимательный инструктор',
+                'solution3': 'Знание специфики школьной программы',
+                'solution4': 'Опыт работы в школе с 2012 года',
+                'solution5': 'Быстрое определение проблемы',
+                'solution6': 'Возвращение веры в себя',
+                'solution7': 'Раскрытие потенциала ребёнка',
+                'contact-title': 'Свяжитесь со мной',
+                'contact-subtitle': 'Свяжитесь со мной, и мы обсудим, как я могу помочь вашему ребёнку достичь успеха в английском языке!',
+                'contact-whatsapp': 'WhatsApp',
+                'contact-telegram': 'Telegram',
+                'footer-text': '© 2025 Преподаватель английского языка. Все права защищены.',
+                'reviews-title': 'Отзывы учеников'
+            },
+            he: {
+                'site-name': 'מורה לאנגלית',
+                'hero-title': 'מורה לאנגלית',
+                'hero-subtitle': 'יותר מ-20 שנות ניסיון. הכנה לבגרות 3-5 יחידות',
+                'hero-description': 'מורה מורשה בישראל',
+                'cta-trial': 'שיעור ניסיון חינם',
+                'stat-experience': 'שנות ניסיון',
+                'stat-students': 'תלמידים',
+                'about-title': 'אודותיי',
+                'about-p1':
+                    'סיימתי את אוניברסיטת קראזין (שפה אנגלית וספרות) וקיבלתי תואר שני. בתחילת שנות ה-2000 למדתי והרציתי בלונדון ב-Birkbeck, University of London.',
+                'about-p2': 'בשנת 2010 עליתי לישראל, ובשנת 2012 סיימתי בהצלחה קורס למורים ב-Haifa Teacher\'s Training College. קיבלתי תעודת הוראה ורישיון הוראה.',
+                'about-p3': 'אני מלמדת בתיכון מאז 2012, מתמחה בהכנה לבגרות 3-5 יחידות. יוצרת סביבה אנגלופונית תוך שימוש במשאבים עדכניים: YouTube, תקשורת, ווידאו בלוגרים, Quizlet ומצגות דינמיות.',
+                'about-goal': 'המטרה שלי - להפוך את הלמידה למרתקת, חיה ואינטראקטיבית!',
+                'cred-education': 'השכלה',
+                'cred-education-text': 'תואר שני בשפה אנגלית וספרות (אוניברסיטת קראזין)<br>Birkbeck, University of London',
+                'cred-licenses': 'רישיונות',
+                'cred-licenses-text': 'תעודת הוראה<br>רישיון הוראה<br>Haifa Teacher\'s Training College',
+                'cred-experience': 'ניסיון',
+                'cred-experience-text': '+20 שנות הוראה<br>מאז 2012 בתיכון ישראלי<br>קורסים רבים להשתלמות מקצועית',
+                'services-title': 'השירותים שלי',
+                'service1-title': 'הכנה לבגרות',
+                'service1-text': 'הכנה ממוקדת לבחינות על 3-5 יחידות. יודעת את כל דרישות התכנית ופורמט הבחינה.',
+                'service2-title': 'גישה אישית',
+                'service2-text': 'מתחשבת במאפייני התפיסה ובתחומי העניין של כל תלמיד. קצב הלמידה נוח לילד.',
+                'service3-title': 'שיטות מודרניות',
+                'service3-text': 'YouTube, בלוגרים, Quizlet, מצגות אינטראקטיביות - הופכת את הלמידה לחיה ומרתקת.',
+                'service4-title': 'הגברת ביטחון',
+                'service4-text': 'עוזרת לילד להאמין ביכולות שלו, לממש את הפוטנציאל ולאהוב אנגלית.',
+                'service5-title': 'אבחון מהיר',
+                'service5-text': 'מזהה במהירות אזורים בעייתיים ויוצרת תכנית יעילה לפתרונם.',
+                'service6-title': 'תוצאות מוכחות',
+                'service6-text': '+20 שנות ניסיון ומאות תלמידים מצליחים. מבטיחה איכות הוראה.',
+                'familiar-title': 'מצב מוכר?',
+                'problems-heading': 'בעיות',
+                'problem1': 'הרבה שיעורי בית',
+                'problem2': 'היעדר הסבר איכותי',
+                'problem3': 'אין קשר עם המורה',
+                'problem4': 'הבעיות מצטברות כאפיון שלג',
+                'problem5': 'הילד מאבד אמון ביכולות שלו',
+                'problem6': 'מתבזבז זמן יקר',
+                'solutions-heading': 'פתרון',
+                'solution1': 'קצב למידה אישי',
+                'solution2': 'מדריכה קשובה ותשומת לב',
+                'solution3': 'ידע בספציפיקה של תכנית הלימודים',
+                'solution4': 'ניסיון עבודה בבית ספר מאז 2012',
+                'solution5': 'זיהוי מהיר של הבעיה',
+                'solution6': 'החזרת האמון בעצמו',
+                'solution7': 'מימוש הפוטנציאל של הילד',
+                'contact-title': 'צור קשר',
+                'contact-subtitle': 'צור איתי קשר ונדון כיצד אוכל לעזור לילד שלך להצליח באנגלית!',
+                'contact-whatsapp': 'WhatsApp',
+                'contact-telegram': 'Telegram',
+                'footer-text': '© 2025 מורה לאנגלית. כל הזכויות שמורות.',
+                'reviews-title': 'חוות דעת תלמידים'
+            },
+            en: {
+                'site-name': 'English Teacher',
+                'hero-title': 'English Teacher',
+                'hero-subtitle': '20+ years of experience. Bagrut 3-5 units preparation',
+                'hero-description': 'Licensed teacher in Israel',
+                'cta-trial': 'Free Trial Lesson',
+                'stat-experience': 'years of experience',
+                'stat-students': 'students',
+                'about-title': 'About Me',
+                'about-p1': 'I graduated from Karazin Kharkiv National University (English Language and Literature) with a Master\'s degree. In the early 2000s, I studied and taught in London at Birkbeck, University of London.',
+                'about-p2': 'In 2010, I immigrated to Israel, and in 2012 I successfully completed a teacher training course at Haifa Teacher\'s Training College. I received my teaching certificate and teaching license.',
+                'about-p3': 'I have been teaching in high school since 2012, specializing in preparing students for Bagrut 3-5 units. I create an English-speaking environment using current resources: YouTube, media, video bloggers, Quizlet, and dynamic presentations.',
+                'about-goal': 'My goal is to make learning exciting, engaging, and interactive!',
+                'cred-education': 'Education',
+                'cred-education-text': 'Master of English Language and Literature (Karazin University)<br>Birkbeck, University of London',
+                'cred-licenses': 'Licenses',
+                'cred-licenses-text': 'Teaching Certificate (Teudat Hora\'a)<br>Teaching License (Rishayon Hora\'a)<br>Haifa Teacher\'s Training College',
+                'cred-experience': 'Experience',
+                'cred-experience-text': '20+ years of teaching<br>Since 2012 in Israeli high school<br>Numerous professional development courses',
+                'services-title': 'My Services',
+                'service1-title': 'Bagrut Preparation',
+                'service1-text': 'Targeted preparation for 3-5 unit exams. I know all the program requirements and exam format.',
+                'service2-title': 'Individual Approach',
+                'service2-text': 'I take into account the learning style and interests of each student. The learning pace is comfortable for the child.',
+                'service3-title': 'Modern Methods',
+                'service3-text': 'YouTube, bloggers, Quizlet, interactive presentations - I make learning lively and engaging.',
+                'service4-title': 'Building Confidence',
+                'service4-text': 'I help students believe in themselves, unlock their potential, and love English.',
+                'service5-title': 'Quick Diagnosis',
+                'service5-text': 'I quickly identify problem areas and create an effective plan to address them.',
+                'service6-title': 'Proven Results',
+                'service6-text': '20+ years of experience and hundreds of successful students. I guarantee quality education.',
+                'familiar-title': 'Does This Sound Familiar?',
+                'problems-heading': 'Problems',
+                'problem1': 'Too much homework',
+                'problem2': 'Lack of quality explanation',
+                'problem3': 'No connection with teacher',
+                'problem4': 'Problems snowball out of control',
+                'problem5': 'Child loses confidence',
+                'problem6': 'Precious time is wasted',
+                'solutions-heading': 'Solution',
+                'solution1': 'Individual learning pace',
+                'solution2': 'Caring and attentive instructor',
+                'solution3': 'Knowledge of school curriculum specifics',
+                'solution4': 'Experience working in school since 2012',
+                'solution5': 'Quick problem identification',
+                'solution6': 'Restoring self-confidence',
+                'solution7': 'Unlocking child\'s potential',
+                'contact-title': 'Contact Me',
+                'contact-subtitle': 'Get in touch and let\'s discuss how I can help your child succeed in English!',
+                'contact-whatsapp': 'WhatsApp',
+                'contact-telegram': 'Telegram',
+                'footer-text': '© 2025 English Teacher. All rights reserved.',
+                'reviews-title': 'Student Reviews'
+            }
+        };
 
-        langButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const selectedLang = button.getAttribute('data-lang');
-                
-                // Update active button
-                langButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-                
-                // Update content visibility
-                langContents.forEach(content => {
-                    if (content.getAttribute('data-lang-content') === selectedLang) {
-                        content.classList.add('active');
-                    } else {
-                        content.classList.remove('active');
-                    }
-                });
+        let currentLang = 'ru';
 
-                // Update direction for Hebrew
-                if (selectedLang === 'he') {
-                    html.setAttribute('dir', 'rtl');
-                    html.setAttribute('lang', 'he');
-                } else if (selectedLang === 'ru') {
-                    html.setAttribute('dir', 'ltr');
-                    html.setAttribute('lang', 'ru');
-                } else {
-                    html.setAttribute('dir', 'ltr');
-                    html.setAttribute('lang', 'en');
+        function changeLanguage(lang) {
+            currentLang = lang;
+
+            // Update active button
+            document.querySelectorAll('.lang-btn').forEach((btn) => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Update text direction for Hebrew
+            if (lang === 'he') {
+                document.body.setAttribute('dir', 'rtl');
+            } else {
+                document.body.setAttribute('dir', 'ltr');
+            }
+
+            // Update all translatable elements
+            document.querySelectorAll('[data-translate]').forEach((element) => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang][key]) {
+                    element.innerHTML = translations[lang][key];
                 }
             });
-        });
+        }
 
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
@@ -1203,29 +991,6 @@
                     });
                 }
             });
-        });
-
-        // Intersection Observer for fade-in animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Observe service cards and other elements
-        document.querySelectorAll('.service-card, .ps-card, .credential-item').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(el);
         });
     </script>
 </body>
